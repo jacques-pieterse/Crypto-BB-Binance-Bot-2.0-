@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crypto BB</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mystyle.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+    </head>
+    <body>
+        <h1>Cypto BB</h1>
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div id="tradingview_830a7"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Chart</span></a> by TradingView</div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+            new TradingView.widget(
+            {
+            "width": 980,
+            "height": 610,
+            "symbol": "BINANCE:BTCUSDT",
+            "interval": "60",
+            "timezone": "Africa/Johannesburg",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview_830a7"
+        }
+            );
+            </script>
+        <!-- TradingView Widget END -->
+        <div class="tab">
+            <button class="tablinks" onclick="openAccount(event, 'coin-balance', 'cointrades')" id="defaultOpen">Coin-Futures</button>
+            <button class="tablinks" onclick="openAccount(event, 'usd-balance', 'usdtrades')">USD-Futures</button>  
+        </div>
+        <div class="account-container">
+            <div class="tabcontent" id= 'coin-balance'>
+                <h2>Balances</h2>
+                <table>
+                    {%  for balance in my_coinbalances %}
+                    <tr>
+                        <td>{{ balance['asset']}}</td>
+                        <td>{{ balance['balance']}}</td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+            <div class="tabcontent" id='cointrades'>
+                <h2>Trades</h2>
+            </div>
+            <div class="tabcontent" id= 'usd-balance'>
+                <h2>Balances</h2>
+                <table>
+                    {%  for balance in my_usdbalances %}
+                    <tr>
+                        <td>{{ balance['asset']}}</td>
+                        <td>{{ balance['balance']}}</td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+            <div class="tabcontent" id='usdtrades'>
+                <h2>Trades</h2> 
+            </div>
+        </div>
+        <script>
+            document.getElementById("defaultOpen").click();
+        </script> 
+    </body>
+</html>
