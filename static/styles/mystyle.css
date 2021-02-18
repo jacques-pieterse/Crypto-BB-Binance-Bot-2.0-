@@ -39,19 +39,24 @@ h1 {
 }
 
 .account-container{
-  display:grid;
-  grid-template-columns: 50% 50%;
   border: solid black 2px;
   border-top: none;
 }
 
 .tabcontent {
   display: none;
-  padding: 6px 12px;
 }
-  #coin-balance, #usdbalance{
+  #coin-balance, #cointrades {
+    float: left;
+    width: 50%;
     border-right: solid black 2px;
   }
+
+  #usdbalance, #usdtrades{
+    float: left;
+    width: 50%;
+  }
+
   table, td, tr {
     border: 1px solid black;
   }

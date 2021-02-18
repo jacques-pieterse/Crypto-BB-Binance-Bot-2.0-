@@ -3,7 +3,9 @@
     <head>
         <title>Crypto BB</title>
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mystyle.css') }}">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='data.js') }}"></script>
     </head>
     <body>
         <h1>Cypto BB</h1>
@@ -31,38 +33,70 @@
             );
             </script>
         <!-- TradingView Widget END -->
-        <div class="tab">
-            <button class="tablinks" onclick="openAccount(event, 'coin-balance', 'cointrades')" id="defaultOpen">Coin-Futures</button>
-            <button class="tablinks" onclick="openAccount(event, 'usd-balance', 'usdtrades')">USD-Futures</button>  
-        </div>
-        <div class="account-container">
-            <div class="tabcontent" id= 'coin-balance'>
-                <h2>Balances</h2>
-                <table>
-                    {%  for balance in my_coinbalances %}
-                    <tr>
-                        <td>{{ balance['asset']}}</td>
-                        <td>{{ balance['balance']}}</td>
-                    </tr>
-                    {%endfor%}
-                </table>
+        <div>
+            <div class="tab">
+                <button class="tablinks" onclick="openAccount(event, 'coinaccount')" id="defaultOpen">Coin-Futures</button>
+                <button class="tablinks" onclick="openAccount(event, 'usdaccount')">USD-Futures</button>  
             </div>
-            <div class="tabcontent" id='cointrades'>
-                <h2>Trades</h2>
+            <div class="tabcontent" id="coinaccount">
+                <div class="account-container" id='coin-info'>
+                    <div id='coin-balance'>
+                        <h2>Balances</h2>
+                        <table id='coinbal'>
+                            {%  for balance in my_coinbalances %}
+                            <tr>
+                                <td>{{ balance['asset']}}</td>
+                                <td>{{ balance['balance']}}</td>
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                    <div id='cointrades'>
+                        <h2>Trades</h2>
+                        <table id='cointrade'>
+                            {%  for trades in my_cointrades %}
+                            <tr>
+                                <td>{{ trades['symbol']}}</td>
+                                <td>{{ trades['positionAmt']}}</td>
+                                <td>{{ trades['entryPrice']}}</td>
+                                <td>{{ trades['markPrice']}}</td>
+                                <td>{{ trades['positionSide']}}</td>
+                                <td>{{ trades['unRealizedProfit']}}</td>
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="tabcontent" id= 'usd-balance'>
-                <h2>Balances</h2>
-                <table>
-                    {%  for balance in my_usdbalances %}
-                    <tr>
-                        <td>{{ balance['asset']}}</td>
-                        <td>{{ balance['balance']}}</td>
-                    </tr>
-                    {%endfor%}
-                </table>
-            </div>
-            <div class="tabcontent" id='usdtrades'>
-                <h2>Trades</h2> 
+            <div class="tabcontent" id='usdaccount'>
+                <div class="account-container" id='usd-info'>
+                    <div id= 'usd-balance'>
+                        <h2>Balances</h2>
+                        <table id='usdbal'>
+                            {%  for balance in my_usdbalances %}
+                            <tr>
+                                <td>{{ balance['asset']}}</td>
+                                <td>{{ balance['balance']}}</td>
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                    <div id='usdtrades'>
+                        <h2>Trades</h2> 
+                        <!-- <table id='usdtrade'>
+                            {%  for trades in my_cointrades %}
+                            <tr>
+                                <td>{{ trades['symbol']}}</td>
+                                <td>{{ trades['positionAmt']}}</td>
+                                <td>{{ trades['entryPrice']}}</td>
+                                <td>{{ trades['markPrice']}}</td>
+                                <td>{{ trades['positionSide']}}</td>
+                                <td>{{ trades['unRealizedProfit']}}</td>
+                            </tr>
+                            {%endfor%}
+                        </table> -->
+                    </div>
+                </div>
             </div>
         </div>
         <script>

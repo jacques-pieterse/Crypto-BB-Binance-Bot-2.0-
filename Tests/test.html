@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <titel> TEST </titel>
+</head>
+<body>
+    <script>
+        var socket = new WebSocket('wss://dstream.binance.com/ws/userDataStream')
+
+        var chat = {
+        API_KEY: 'sv25WDcIdIGWmQsjK3euyJtHtsA0JpIQOR3Hp6Fi5sKcRYriVzQGCjzHNQFvnc6a'
+        }
+
+        socket.onopen = function(event) {
+        console.log("WebSocket is open now.");
+        socket.send(chat)
+        };
+
+        socket.onmessage = function(event) {
+            var message = event.data;
+            console.log(message)
+        }
+    </script>
+</body>

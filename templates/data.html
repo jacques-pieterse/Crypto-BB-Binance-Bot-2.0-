@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mystyle.css') }}">
+    </head>
+
+    <body>
+        <div class="tabcontent" id= 'coin-balance'>
+            <h2>Balances</h2>
+            <table id='coinbal'>
+                {%  for balance in my_coinbalances %}
+                <tr>
+                    <td>{{ balance['asset']}}</td>
+                    <td>{{ balance['balance']}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="tabcontent" id='cointrades'>
+            <h2>Trades</h2>
+            <table id='cointrade'>
+                {%  for trades in my_cointrades %}
+                <tr>
+                    <td>{{ trades['symbol']}}</td>
+                    <td>{{ trades['positionAmt']}}</td>
+                    <td>{{ trades['entryPrice']}}</td>
+                    <td>{{ trades['markPrice']}}</td>
+                    <td>{{ trades['positionSide']}}</td>
+                    <td>{{ trades['unRealizedProfit']}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </body>
