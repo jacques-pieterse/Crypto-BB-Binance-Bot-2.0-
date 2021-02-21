@@ -1,4 +1,4 @@
-function openAccount(evt, accountType, TradeType) {
+function openAccount(evt, accountType) {
     // Declare all variables
     var i, tabcontent, tablinks;
   

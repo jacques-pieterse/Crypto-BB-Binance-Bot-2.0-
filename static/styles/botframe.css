@@ -1,0 +1,15 @@
+#bots {
+    border: solid black 2px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#bot-info {
+    margin: 12px;
+}
+
+.selectcontent {
+    display: none;
+    border: solid black;
+    border-top: none;
+  }

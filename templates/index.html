@@ -2,13 +2,16 @@
 <html>
     <head>
         <title>Crypto BB</title>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mystyle.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/tabframe.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/botframe.css') }}">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='data.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='bot-form.js') }}"></script>
     </head>
     <body>
         <h1>Cypto BB</h1>
+
         <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container">
             <div id="tradingview_830a7"></div>
@@ -33,9 +36,33 @@
             );
             </script>
         <!-- TradingView Widget END -->
+
+        <!-- Container where bot will be chosen and given properties -->
+
+        <div id='bots'>
+            <h2>Bots</h2>
+            <select>
+                <option class="selectlinks" onclick="changeForm(event, 'rsiform')">RSI bot</option>
+                <option class="selectlinks" onclick="changeForm(event, 'emaform')">EMA crossover bot</option>
+            </select>
+            <form class='selectcontent' id='rsiform'>
+                <label>RSI Length:</label>
+                <input type="number" id="rsilength">
+            </form>
+            <form class='selectcontent' id='emaform'>
+                <label>1st EMA:</label>
+                <input type="number" id="1ema">
+                <label>2nd EMA:</label>
+                <input type="number" id="2ema">
+            </form>
+
+        </div>
+        
+        <!-- Container where account information is being shown -->
+
         <div>
             <div class="tab">
-                <button class="tablinks" onclick="openAccount(event, 'coinaccount')" id="defaultOpen">Coin-Futures</button>
+                <button class="tablinks" id='defaultOpen' onclick="openAccount(event, 'coinaccount')" id="defaultOpen">Coin-Futures</button>
                 <button class="tablinks" onclick="openAccount(event, 'usdaccount')">USD-Futures</button>  
             </div>
             <div class="tabcontent" id="coinaccount">
@@ -69,7 +96,7 @@
                 </div>
             </div>
             <div class="tabcontent" id='usdaccount'>
-                <div class="account-container" id='usd-info'>
+                <div class='account-container' id='usd-info'>
                     <div id= 'usd-balance'>
                         <h2>Balances</h2>
                         <table id='usdbal'>
@@ -83,8 +110,8 @@
                     </div>
                     <div id='usdtrades'>
                         <h2>Trades</h2> 
-                        <!-- <table id='usdtrade'>
-                            {%  for trades in my_cointrades %}
+                        <table id='usdtrade'>
+                            {%  for trades in my_usdtrades %}
                             <tr>
                                 <td>{{ trades['symbol']}}</td>
                                 <td>{{ trades['positionAmt']}}</td>
@@ -94,7 +121,7 @@
                                 <td>{{ trades['unRealizedProfit']}}</td>
                             </tr>
                             {%endfor%}
-                        </table> -->
+                        </table>
                     </div>
                 </div>
             </div>

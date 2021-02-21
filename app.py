@@ -14,8 +14,11 @@ def index():
     allcointrades = client.coinfutures_position_information()
     cointrades = allcointrades[10], allcointrades[24]
 
+    allusdtrades = client.futures_position_information()
+    usdtrades = allusdtrades[30], allusdtrades[63]
+
     
-    return render_template('index.html', my_coinbalances=coinfuturesbal, my_usdbalances=usdfuturesbal, my_cointrades=cointrades)
+    return render_template('index.html', my_coinbalances=coinfuturesbal, my_usdbalances=usdfuturesbal, my_cointrades=cointrades, my_usdtrades=usdtrades)
 
 @app.route('/coin-data')
 def coindata():
@@ -31,7 +34,10 @@ def coindata():
 def usddata():
     usdfuturesbal = client.futures_account_balance()
 
-    return render_template('usd-data.html', my_usdbalances=usdfuturesbal)
+    allusdtrades = client.futures_position_information()
+    usdtrades = allusdtrades[30], allusdtrades[63]
+
+    return render_template('usd-data.html', my_usdbalances=usdfuturesbal, my_usdtrades=usdtrades)
 
 @app.route('/buy')
 def buy():
