@@ -9,7 +9,3 @@ Coin Futures:
 
 Futures:
 - base api = https://fapi.binance.com
-
-Keys:
-- Secret = lu0osGRwqtLIyosBcA5qMQg1b04aEODRPUjKgjL9b8WIBVh9bbjrPHbiFtz5LnEU
-- key = sv25WDcIdIGWmQsjK3euyJtHtsA0JpIQOR3Hp6Fi5sKcRYriVzQGCjzHNQFvnc6a
